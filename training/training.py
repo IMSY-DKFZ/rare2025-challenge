@@ -515,7 +515,7 @@ class Trainer:
         if self.config.im_size == "large":
             hp_config["batch_size"] = trial.suggest_categorical("batch_size", [16, 32])
         else:
-            hp_config["batch_size"] = trial.suggest_categorical("batch_size", [16, 32, 64, 128])
+            hp_config["batch_size"] = trial.suggest_categorical("batch_size", [16, 32, 64, 128, 256])
 
         return hp_config
 

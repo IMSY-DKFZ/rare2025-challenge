@@ -98,8 +98,8 @@ class VectorizedDINOv3Group(nn.Module):
         print(f"Creating vectorized DINOv3 group for {self.num_models} models...")
         
         # Create template model
-        dinov3_weights = RESOURCE_PATH / "vitl/RARE_dinov3_vitl16/top1/models/final_dinov3_vitl16_fold0_lora_dino.pth"
-        template_weights = RESOURCE_PATH / "vitl/RARE_dinov3_vitl16/top1/models/final_dinov3_vitl16_fold0_lora.pth"
+        dinov3_weights = RESOURCE_PATH / "vitl/RARE_dinov3_vitl16/top1/models/final_dinov3_vitl16_fold_0_lora_dino.pth"
+        template_weights = RESOURCE_PATH / "vitl/RARE_dinov3_vitl16/top1/models/final_dinov3_vitl16_fold_0_lora.pth"
         self.template = DINOv3ViT_L(lora=True, weights_path=dinov3_weights, lora_weights_path=template_weights)
         
         # Clean and stack state dicts
