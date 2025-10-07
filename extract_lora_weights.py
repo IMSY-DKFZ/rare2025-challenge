@@ -67,10 +67,16 @@ def extract_lora_weights(checkpoint_path, output_path:Path):
     except Exception as e:
         print(f"Error saving LoRA weights: {e}")
 
-    try:
-        torch.save(dino_state_dict, output_path.parent / f"{output_path.stem}_dino.pth")
-    except Exception as e:
-        print(f"Error saving DINO weights: {e}")
+    dino_file_exists = any(file.name.endswith("_dino.pth") for file in output_path.parent.iterdir() if file.is_file())
+    if not dino_file_exists:
+        dino_file_path = output_path.parent / f"{output_path.stem}_dino.pth"
+        try:
+            torch.save(dino_state_dict, dino_file_path)
+            print(f"DINO weights saved to {dino_file_path}")
+        except Exception as e:
+            print(f"Error saving DINO weights: {e}")
+    else:
+        print(f"A DINO weights file already exists in the directory, skipping extraction")
 
 def extract_lora_weights_new_structure(base_path: Path, output_base_path: Path = None):
     """

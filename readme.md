@@ -77,9 +77,9 @@ For minimizing latency and memory usage we have to run `python extract_lora_weig
 
 For the use of the DINOv3 models in the final submission docker one needs to first clone the DINOv3 repo and then build the docker:
 1. Clone the DINOv3 repository into the base directory here, ideally name it `dino_repo`. You can use the following call: `git clone https://github.com/facebookresearch/dinov3.git dino_repo` 
-2. Copy relevant checkpoint folders (`vitl`and `resnet`) as they are to the `resources` directory. For ResNet go through the directories `top1` through `top4` and pull the contents of the subfolder up one level. Now the checkpoints (as well as calibration files and such) should be directly below `topX`.
-2. Run `./do_test_run.sh` to verify the submission runs correctly.
-3. Run `./do_save.sh` to save the docker image to be submitted to the challenge leaderboard.
+2. Copy relevant checkpoint folders (`vitl`and `resnet`) as they are to the `resources` directory. For ResNet go through the directories `top1` through `top4` and pull the contents of the subfolder up one level. Now the checkpoints (as well as calibration files and such) should be directly below `topX`. For more efficient loading of the weights, we recommend removing any of the vitl weights under `models` not containing the keyword `"lora"`. You may also remove any of the `"_lora_dino.pth"` weights that are not from `fold_0`.
+3. Run `./do_test_run.sh` to verify the submission runs correctly.
+4. Run `./do_save.sh` to save the docker image to be submitted to the challenge leaderboard.
 
 ## Team members:
 Piotr Kalinowski, Dominik Michael, Amine Yamlahi, Berit Pauls, Lucas Luttner, Patrick Godau, Lena Maier-Hein

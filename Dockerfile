@@ -19,17 +19,17 @@ USER user
 WORKDIR /opt/app
 
 COPY --chown=user:user requirements.txt /opt/app/
-COPY --chown=user:user resources /opt/app/resources
-COPY --chown=user:user model /opt/app/model
-COPY --chown=user:user dino_repo /opt/app/dino_repo
-RUN ln -s /opt/app/dino_repo/dinov3 /opt/app/dinov3
-
 # You can add any Python dependencies to requirements.txt
 RUN python -m pip install \
     --user \
     --no-cache-dir \
     --no-color \
     --requirement /opt/app/requirements.txt
+
+COPY --chown=user:user resources /opt/app/resources
+COPY --chown=user:user model /opt/app/model
+COPY --chown=user:user dino_repo /opt/app/dino_repo
+RUN ln -s /opt/app/dino_repo/dinov3 /opt/app/dinov3
 
 COPY --chown=user:user inference.py /opt/app/
 
