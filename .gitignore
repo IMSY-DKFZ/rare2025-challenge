@@ -1,0 +1,10 @@
+
+resources/
+data/
+lightning_logs/
+results/
+__pycache__/
+wandb/
+.lr_find*
+*.db
+dino_repo
